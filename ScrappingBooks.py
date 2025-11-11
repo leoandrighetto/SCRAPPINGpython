@@ -1,5 +1,8 @@
-driver = webdriver.Chrome()  
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
 
+driver = webdriver.Chrome()
 driver.get("https://books.toscrape.com/")
 time.sleep(2)
 
@@ -16,6 +19,6 @@ for livro in livros:
 for l in dados_livros:
     print(l)
 
-print("\nArquivo 'livros_selenium.csv' criado com sucesso!")
+print("\nColeta finalizada com sucesso!")
 
 driver.quit()
