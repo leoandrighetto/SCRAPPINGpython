@@ -1,7 +1,7 @@
 driver = webdriver.Chrome()  
 
 driver.get("https://books.toscrape.com/")
-time.sleep(2)  # espera 2 segundos pra garantir o carregamento
+time.sleep(2)
 
 livros = driver.find_elements(By.CSS_SELECTOR, "article.product_pod")
 
@@ -13,17 +13,9 @@ for livro in livros:
     estoque = livro.find_element(By.CSS_SELECTOR, "p.instock.availability").text.strip()
     dados_livros.append([titulo, preco, estoque])
 
-# Exibe no terminal
 for l in dados_livros:
     print(l)
 
-# Salva em CSV
-with open("livros_selenium.csv", "w", newline="", encoding="utf-8") as arquivo:
-    writer = csv.writer(arquivo)
-    writer.writerow(["Título", "Preço", "Estoque"])
-    writer.writerows(dados_livros)
-
 print("\nArquivo 'livros_selenium.csv' criado com sucesso!")
 
-# Fecha o navegador
 driver.quit()
